@@ -14,7 +14,6 @@ export class AuthService {
     this.user$ = afAuth.authState;
   }
 
-
   login() {
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);

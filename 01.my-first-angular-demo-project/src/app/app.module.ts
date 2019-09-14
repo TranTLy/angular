@@ -1,7 +1,8 @@
-import { AdminAuthGuardService } from './admin-auth-guard.service';
-import { UserService } from './user.service';
-import { AuthService } from './auth.service';
-import { AuthGuardService } from './auth-guard.service';
+import { LoginComponent } from './component/user/login/login.component';
+import { AdminAuthGuardService } from './services/admin-auth-guard/admin-auth-guard.service';
+import { UserService } from './services/user-service/user.service';
+import { AuthService } from './services/auth-service/auth.service';
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { RouterModule, CanActivate } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,16 +13,16 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from 'src/environments/environment';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
-import { ProductsComponent } from './products/products.component';
-import { ShopppingCartComponent } from './shoppping-cart/shoppping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
-import { MyOrderComponent } from './my-order/my-order.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { BsNavbarComponent } from './component/user/bs-navbar/bs-navbar.component';
+import { ProductsComponent } from './component/user/products/products.component';
+import { ShopppingCartComponent } from './component/user/shoppping-cart/shoppping-cart.component';
+import { CheckOutComponent } from './component/user/check-out/check-out.component';
+import { OrderSuccessComponent } from './component/user/order-success/order-success.component';
+import { MyOrderComponent } from './component/user/my-order/my-order.component';
+import { AdminProductsComponent } from './component/admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './component/admin/admin-orders/admin-orders.component';
+import { HomeComponent } from './component/user/home/home.component';
+
 
 @NgModule({
   declarations: [

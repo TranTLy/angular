@@ -1,6 +1,7 @@
-import { Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
-import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
+import { AuthService } from '../../../services/auth-service/auth.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
