@@ -61,8 +61,8 @@ import { HomeComponent } from './component/user/home/home.component';
       },
       { path: 'my-order', component: MyOrderComponent, canActivate: [AuthGuardService] },
 
-      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService] },
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService] }
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] }
     ])
   ],
   providers: [
