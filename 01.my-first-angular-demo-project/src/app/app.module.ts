@@ -24,6 +24,8 @@ import { AdminProductsComponent } from './component/admin/admin-products/admin-p
 import { AdminOrdersComponent } from './component/admin/admin-orders/admin-orders.component';
 import { HomeComponent } from './component/user/home/home.component';
 import { ProductFormComponent } from './component/admin/product-form/product-form.component';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { ProductFormComponent } from './component/admin/product-form/product-for
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    CustomFormsModule,
     NgbModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
@@ -64,9 +68,13 @@ import { ProductFormComponent } from './component/admin/product-form/product-for
       },
       { path: 'my-order', component: MyOrderComponent, canActivate: [AuthGuardService] },
 
-      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
-      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
-      { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] }
+      // { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      // { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      // { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] }
+      // in develop mode, cancel authentication
+      { path: 'admin/products', component: AdminProductsComponent },
+      { path: 'admin/orders', component: AdminOrdersComponent },
+      { path: 'admin/products/new', component: ProductFormComponent }
     ])
   ],
   providers: [

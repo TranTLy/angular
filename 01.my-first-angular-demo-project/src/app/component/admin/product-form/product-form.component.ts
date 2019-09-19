@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ProductService } from './../../../product.service';
 import { CategoryService } from './../../../category.service';
 import { Component } from '@angular/core';
 
@@ -8,9 +10,14 @@ import { Component } from '@angular/core';
 })
 export class ProductFormComponent {
   categories$;
-  constructor(categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private productService: ProductService, private router: Router) {
     this.categories$ = categoryService.getCategories();
-    console.log("cate: " + JSON.stringify(this.categories$));
+  }
+
+  save(product) {
+    // console.log(product);
+    this.productService.create(product);
+    this.router.navigate(['/admin/products']);
   }
 
 
