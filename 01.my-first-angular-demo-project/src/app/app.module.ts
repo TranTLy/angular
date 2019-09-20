@@ -26,7 +26,7 @@ import { HomeComponent } from './component/user/home/home.component';
 import { ProductFormComponent } from './component/admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-
+import { DataTableModule } from 'angular-4-data-table';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { CustomFormsModule } from 'ng2-validation';
     CustomFormsModule,
     NgbModule,
     FormsModule,
+    DataTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },

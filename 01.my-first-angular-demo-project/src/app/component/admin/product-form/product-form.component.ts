@@ -27,11 +27,11 @@ export class ProductFormComponent {
     }
   }
 
-  save(product) {
+  save() {
     if (this.id) {
-      this.productService.update(this.id, product);
+      this.productService.update(this.id, this.product);
     } else {
-      this.productService.create(product);
+      this.productService.create(this.product);
     }
     this.router.navigate(['/admin/products']);
   }
