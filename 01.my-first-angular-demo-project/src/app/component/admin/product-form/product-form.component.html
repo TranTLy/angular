@@ -52,7 +52,7 @@
     </form>
   </div>
   <div class='col-6'>
-    <div class='card' style='width: 18rem;'>
+    <div class='card' *ngIf="product.title" style='width: 18rem;'>
       <!-- <img class='card-img-top' [src]='img.value'> -->
       <img class='card-img-top' [src]='product.img' *ngIf="product.img">
       <div class='card-body'>

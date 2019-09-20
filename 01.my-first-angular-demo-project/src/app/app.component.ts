@@ -15,7 +15,10 @@ export class AppComponent {
       if (user) {
         userService.save(user);
         const returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
+        if (returnUrl) {
+          router.navigateByUrl(returnUrl);
+          localStorage.removeItem('returnUrl');
+        }
       }
     });
   }
