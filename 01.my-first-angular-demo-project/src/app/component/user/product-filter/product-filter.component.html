@@ -1,0 +1,7 @@
+<div class="list-group">
+  <a class="list-group-item" [routerLink]="['/']">All category</a>
+  <a class="list-group-item" *ngFor="let item of categories$ | async" [routerLink]="['/']"
+    [queryParams]="{category: item.key}" routerLinkActive="router-link-active" [class.active]="item.key === category">
+    {{item.payload.val().name}}
+  </a>
+</div>
