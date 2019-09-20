@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProductService {
-
   constructor(private db: AngularFireDatabase) { }
 
   create(product) {
@@ -13,7 +12,11 @@ export class ProductService {
   }
 
   getAll() {
-    return this.db.list('/products').valueChanges();
+    return this.db.list('/products').snapshotChanges();
+  }
+
+  get(id) {
+    return this.db.object('/products/' + id).valueChanges();
   }
 
 }

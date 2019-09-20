@@ -1,7 +1,8 @@
-import { Router } from '@angular/router';
-import { ProductService } from './../../../product.service';
-import { CategoryService } from './../../../category.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../../services/product/product.service';
+import { CategoryService } from '../../../services/category/category.service';
 import { Component } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-form',
@@ -10,8 +11,19 @@ import { Component } from '@angular/core';
 })
 export class ProductFormComponent {
   categories$;
-  constructor(private categoryService: CategoryService, private productService: ProductService, private router: Router) {
+  product = {};
+  constructor(private categoryService: CategoryService, private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.categories$ = categoryService.getCategories();
+    const id = route.snapshot.paramMap.get('id');
+    console.log('id: ' + id);
+    if (id) {
+      productService.get(id).pipe(take(1)).subscribe(product => {
+        console.log('product: ' + JSON.stringify(product));
+        this.product = product;
+      });
+    }
   }
 
   save(product) {

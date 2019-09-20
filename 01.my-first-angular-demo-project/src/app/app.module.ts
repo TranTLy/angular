@@ -1,4 +1,4 @@
-import { CategoryService } from './category.service';
+import { CategoryService } from './services/category/category.service';
 import { LoginComponent } from './component/user/login/login.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard/admin-auth-guard.service';
 import { UserService } from './services/user-service/user.service';
@@ -68,13 +68,10 @@ import { CustomFormsModule } from 'ng2-validation';
       },
       { path: 'my-order', component: MyOrderComponent, canActivate: [AuthGuardService] },
 
-      // { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
-      // { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
-      // { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] }
-      // in develop mode, cancel authentication
-      { path: 'admin/products', component: AdminProductsComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
-      { path: 'admin/products/new', component: ProductFormComponent }
+      { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGuardService] },
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGuardService] }
     ])
   ],
   providers: [

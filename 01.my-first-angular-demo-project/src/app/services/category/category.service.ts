@@ -13,6 +13,6 @@ export class CategoryService {
     //     orderByChild: 'name'
     //   }
     // });
-    return this.db.list('/categories', ref => ref.orderByChild('name')).snapshotChanges()
+    return this.db.list('/categories', ref => ref.orderByChild('name')).snapshotChanges();
   }
 }
