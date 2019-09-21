@@ -52,13 +52,13 @@
     </form>
   </div>
   <div class='col-6'>
-    <div class='card' *ngIf="product.title" style='width: 18rem;'>
-      <!-- <img class='card-img-top' [src]='img.value'> -->
+    <!-- <div class='card' *ngIf="product.title" style='width: 18rem;'>
       <img class='card-img-top' [src]='product.img' *ngIf="product.img">
       <div class='card-body'>
         <h5 class='card-title'>{{title.value}}</h5>
         <p class='card-text'>{{price.value | currency: 'USD': true}}</p>
       </div>
-    </div>
+    </div> -->
+    <product-card [product]="product" [isShowAction]="false"></product-card>
   </div>
 </div>
