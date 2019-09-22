@@ -1,6 +1,8 @@
 <h1>Shopping cart</h1>
 <div *ngIf="cart">
-  <p>You have {{cart.getCountItems}} items in your shopping cart</p>
+  <p>You have {{cart.getCountItems}} items in your shopping cart
+    <button *ngIf="cart.items.length" class="btn btn-warning btn-sm" (click)="deleteAll()">Clear shopping cart</button>
+  </p>
   <table class="table">
     <thead>
       <tr>
@@ -33,5 +35,6 @@
       <td>{{cart.total}}</td>
     </tfoot>
   </table>
-  <button class="btn btn-danger btn-sm" (click)="deleteAll()">Clear shopping cart</button>
+  <a [routerLink]="['/check-out']" class="btn btn-primary">Check out</a>
+
 </div>
