@@ -1,8 +1,10 @@
 import Product from 'src/app/models/product';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import ShoppingCart from '../models/shopping-cart';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +22,11 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     const cartId = await this.getOrCreateCart();
-    return this.db.object(this.node + '/' + cartId).valueChanges();
+    return this.db.object(this.node + '/' + cartId).snapshotChanges().pipe(map(cart => {
+      return { items: cart.payload.val()['items'] } as ShoppingCart;
+    }));
   }
   private getItems(cartId: string, productId: string) {
     return this.db.object(this.node + '/' + cartId + '/items/' + productId);
@@ -53,8 +57,20 @@ export class ShoppingCartService {
 
     items$.snapshotChanges().pipe(take(1)).subscribe(item => {
       const quantity = item.payload.hasChild('quantity') ? item.payload.val()['quantity'] + change : 1;
-      items$.update({ product: product, quantity: quantity });
+      if (quantity === 0) {
+        items$.remove();
+      } else {
+        items$.update({ title: product.title, price: product.price, img: product.img, quantity: quantity });
+      }
     });
+  }
+
+  deleteAll() {
+    const cartId = localStorage.getItem('cartId');
+    console.log("delete: " + cartId);
+    if (cartId) {
+      this.db.object(this.node + '/' + cartId + '/items').remove();
+    }
   }
 
 }

@@ -5,17 +5,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import UserModel from 'src/app/models/user.model';
+import ShoppingCart from 'src/app/models/shopping-cart';
 
 @Component({
   selector: 'bs-navbar',
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.scss']
 })
-export class BsNavbarComponent implements OnInit, OnDestroy {
+export class BsNavbarComponent implements OnInit {
   appUser: UserModel;
-  cart;
-  countItemInCart: number;
-  subscription: Subscription;
+  cart: ShoppingCart;
+  countItemInCart: number = 0;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -24,12 +24,9 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.subscription = (await this.shoppingCartService.getCart()).subscribe(cart => {
-      this.cart = cart;
+    (await this.shoppingCartService.getCart()).subscribe(cart => {
+      this.cart = new ShoppingCart(cart.items);
     });
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   logout() {

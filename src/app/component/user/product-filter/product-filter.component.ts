@@ -11,7 +11,6 @@ export class ProductFilterComponent {
   categories$;
   constructor(private categoryService: CategoryService) {
     this.categories$ = categoryService.getCategories();
-
   }
 
 }

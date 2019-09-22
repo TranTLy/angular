@@ -1,0 +1,37 @@
+<h1>Shopping cart</h1>
+<div *ngIf="cart">
+  <p>You have {{cart.getCountItems}} items in your shopping cart</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 100px;"></th>
+        <th>Product</th>
+        <th style="width: 230px;" class="text-center">Quantity</th>
+        <th>Price</th>
+        <th style="width: 100px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart.items">
+        <td>
+          <div [style.backgroundImage]="'url('+ item.img + ')'" class="thumbnail"></div>
+        </td>
+        <td>{{item.title}}</td>
+        <td>
+          <product-quantity [product]="item" [cart]="cart"></product-quantity>
+        </td>
+        <td>{{item.price}}</td>
+        <td>{{item.total}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>{{cart.total}}</td>
+    </tfoot>
+  </table>
+  <button class="btn btn-danger btn-sm" (click)="deleteAll()">Clear shopping cart</button>
+</div>
